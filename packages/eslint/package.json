@@ -1,6 +1,6 @@
 {
   "name": "@jinseokkim/eslint-config",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "personal eslint config settings",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,7 @@
   ],
   "author": "genuineseok <genuineseok@gmail.com>",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "@typescript-eslint/parser": "^6.6.0",
     "eslint": "^8.48.0",
     "eslint-config-airbnb": "^19.0.4",
