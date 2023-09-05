@@ -1,6 +1,6 @@
 {
   "name": "@jinseokkim/eslint-config",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "personal eslint config settings",
   "main": "index.js",
   "scripts": {
@@ -33,6 +33,7 @@
     "eslint": "^8.0.0"
   },
   "optionalDependencies": {
+    "react": "^18.2.0",
     "typescript": "^5.2.2"
   }
 }
