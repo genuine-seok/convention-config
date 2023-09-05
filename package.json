@@ -1,0 +1,14 @@
+{
+  "name": "convention-config",
+  "version": "0.0.1",
+  "description": "personal convention config packages",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "config"
+  ],
+  "author": "genuineseok <genuineseok@gmail.com>",
+  "license": "ISC",
+  "repository": "https://github.com/genuine-seok/convention-config"
+}
