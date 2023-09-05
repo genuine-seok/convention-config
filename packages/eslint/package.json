@@ -1,6 +1,6 @@
 {
   "name": "@jinseokkim/eslint-config",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "personal eslint config settings",
   "main": "index.js",
   "scripts": {
@@ -26,5 +26,8 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0"
+  },
+  "peerDependencies": {
+    "eslint": "^8.0.0"
   }
 }
