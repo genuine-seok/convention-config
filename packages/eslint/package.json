@@ -1,6 +1,6 @@
 {
   "name": "@jinseokkim/eslint-config",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "personal eslint config settings",
   "main": "index.js",
   "scripts": {
@@ -30,5 +30,8 @@
   },
   "peerDependencies": {
     "eslint": "^8.0.0"
+  },
+  "optionalDependencies": {
+    "typescript": "^5.2.2"
   }
 }
