@@ -6,6 +6,14 @@ module.exports = {
     "plugin:import/recommended",
     "plugin:promise/recommended",
     "prettier",
+    ...[
+      "./rules/base",
+      "./rules/import",
+      "./rules/jsx-a11y",
+      "./rules/prettier",
+      "./rules/promise",
+      "./rules/react",
+    ].map(require.resolve),
   ],
   env: {
     commonjs: true,
@@ -33,7 +41,7 @@ module.exports = {
       extends: [
         "plugin:@typescript-eslint/recommended",
         "plugin:import/typescript",
-        // TODO: typescript 관련 룰 설정 필요
+        ...["./rules/typescript"].map(require.resolve),
       ],
       settings: {
         /**
