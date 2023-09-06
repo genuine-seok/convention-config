@@ -1,10 +1,11 @@
 {
   "name": "@jinseokkim/prettier-config",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "personal prettier config settings",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "version": "npm version",
+    "deploy": "pnpm publish --access public"
   },
   "keywords": [
     "prettier",
@@ -16,5 +17,8 @@
   "license": "ISC",
   "dependencies": {
     "prettier": "^3.0.3"
+  },
+  "peerDependencies": {
+    "prettier": "^2.0.0"
   }
 }
