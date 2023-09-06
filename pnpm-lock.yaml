@@ -49,6 +49,9 @@ importers:
       eslint-plugin-react-hooks:
         specifier: ^4.6.0
         version: 4.6.0(eslint@8.48.0)
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
     optionalDependencies:
       react:
         specifier: ^18.2.0
