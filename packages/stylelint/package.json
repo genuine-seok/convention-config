@@ -1,10 +1,11 @@
 {
   "name": "@jinseokkim/stylelint-config",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "personal stylelint config settings",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "version": "npm version",
+    "deploy": "pnpm publish --access public"
   },
   "keywords": [
     "stylelint",
@@ -15,6 +16,13 @@
   "author": "genuineseok <genuineseok@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "stylelint": "^15.10.3"
+    "postcss-scss": "^4.0.7",
+    "stylelint": "^15.10.3",
+    "stylelint-config-recommended-scss": "^13.0.0",
+    "stylelint-order": "^6.0.3",
+    "stylelint-scss": "^5.1.0"
+  },
+  "peerDependencies": {
+    "stylelint": "^15.10.0"
   }
 }
