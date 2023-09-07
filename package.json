@@ -1,9 +1,20 @@
 {
   "name": "convention-config",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "personal convention config packages",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "version:eslint": "pnpm --filter @jinseokkim/eslint-config run version",
+    "version:prettier": "pnpm --filter @jinseokkim/prettier-config run version",
+    "version:stylelint": "pnpm --filter @jinseokkim/stylelint-config run version",
+    "patch": "pnpm run version:eslint patch && pnpm run version:prettier patch && pnpm run version:stylelint patch",
+    "minor": "pnpm run version:eslint minor && pnpm run version:prettier minor && pnpm run version:stylelint minor",
+    "major": "pnpm run version:eslint major && pnpm run version:prettier major && pnpm run version:stylelint patch",
+    "deploy:eslint": "pnpm --filter @jinseokkim/eslint-config run deploy",
+    "deploy:prettier": "pnpm --filter @jinseokkim/prettier-config run deploy",
+    "deploy:stylelint": "pnpm --filter @jinseokkim/stylelint-config run deploy",
+    "deploy": "pnpm run deploy:eslint && pnpm run deploy:prettier && pnpm run deploy:stylelint",
+    "test:lint": "pnpm --filter @convention-config/test run lint:all",
+    "test:react": "pnpm --filter @convention-config/test run dev"
   },
   "keywords": [
     "convention",

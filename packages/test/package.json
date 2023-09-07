@@ -1,0 +1,40 @@
+{
+  "name": "@convention-config/test",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "eslint": "eslint './src/**/*.{js,ts,tsx}'",
+    "eslint:fix": "eslint './src/**/*.{js,ts,tsx}' --fix",
+    "prettier": "prettier './src/**/*.{js,ts,tsx}' --check",
+    "prettier:fix": "prettier './src/**/*.{js,ts,tsx}' --write",
+    "stylelint": "stylelint './src/**/*.{js,ts,tsx}'",
+    "stylelint:fix": "stylelint './src/**/*.{js,ts,tsx}' --fix",
+    "lint:all": "pnpm run eslint && pnpm run prettier && pnpm run eslint",
+    "lint:all:fix": "pnpm run eslint:fix && pnpm run prettier:fix && pnpm run eslint:fix"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@jinseokkim/eslint-config": "*",
+    "@jinseokkim/prettier-config": "*",
+    "@jinseokkim/stylelint-config": "*",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-react": "^4.0.3",
+    "eslint": "*",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "prettier": "*",
+    "sass": "^1.66.1",
+    "stylelint": "*",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5"
+  }
+}
