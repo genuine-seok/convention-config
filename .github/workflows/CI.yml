@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  pull_request:
+    branches: ["main"]
+
+env:
+  PNPM_VERSION: 8.6
+
+jobs:
+  test_lints:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: true
+
+      - name: Test eslint
+        run: pnpm run test:eslint
+
+      - name: Test prettier
+        run: pnpm run test:prettier
+
+      - name: Test stylelint
+        run: pnpm run test:stylelint

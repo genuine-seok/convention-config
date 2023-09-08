@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "personal stylelint config settings",
   "main": "index.js",
+  "packageManager": "pnpm@8.6.10",
   "scripts": {
     "version": "npm version",
     "deploy": "pnpm publish --access public"

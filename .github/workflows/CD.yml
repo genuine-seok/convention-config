@@ -1,0 +1,148 @@
+name: CD
+
+on:
+  push:
+    branches: ["main"]
+
+env:
+  PNPM_VERSION: 8.6
+  USER_EMAIL: "genuineseok@gmail.com"
+  USER_NAME: "jinseokkim"
+
+jobs:
+  test:
+    if: '!contains(github.event.head_commit.message, "ver: ")'
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: true
+
+      - name: Test eslint
+        run: pnpm run test:eslint
+
+      - name: Test prettier
+        run: pnpm run test:prettier
+
+      - name: Test stylelint
+        run: pnpm run test:stylelint
+
+  update_version:
+    needs: test
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
+      - name: Register author
+        run: git config --global user.email ${{env.USER_EMAIL}} && git config --global user.name ${{env.USER_NAME}}
+
+      - name: Pull branch
+        run: git pull
+
+      - name: Update packages patch version
+        if: 'contains(github.event.head_commit.message, "+patch")'
+        run: "pnpm version patch"
+
+      - name: Update packages minor version
+        if: 'contains(github.event.head_commit.message, "+minor")'
+        run: "pnpm version minor"
+
+      - name: Update packages major version
+        if: 'contains(github.event.head_commit.message, "+major")'
+        run: "pnpm version major"
+
+      - name: Get current version
+        id: get-current-version
+        uses: beaconbrigade/package-json-version@v0.3
+        with:
+          path: .
+
+      - name: Commit new version
+        run: "git reset HEAD^ && git add -A && git commit -m 'ver: ${{steps.get-current-version.outputs.version}}' && git push"
+
+  release:
+    needs: update_version
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Pull branch
+        run: git pull
+
+      - name: Get current version
+        id: get-current-version
+        uses: beaconbrigade/package-json-version@v0.3
+        with:
+          path: .
+
+      - name: Create new tag & release version
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.get-current-version.outputs.version }}
+          release_name: ${{ steps.get-current-version.outputs.version }}
+
+  deploy:
+    needs: update_version
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version}}
+          registry-url: https://registry.npmjs.org/
+
+      - name: Pull branch
+        run: git pull
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{env.PNPM_VERSION}}
+          run-install: true
+
+      - name: Deploy all packages
+        run: pnpm run deploy
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN}}

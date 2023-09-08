@@ -2,6 +2,7 @@
   "name": "convention-config",
   "version": "1.1.0",
   "description": "personal convention config packages",
+  "packageManager": "pnpm@8.6.10",
   "scripts": {
     "version:eslint": "pnpm --filter @jinseokkim/eslint-config run version",
     "version:prettier": "pnpm --filter @jinseokkim/prettier-config run version",
@@ -13,6 +14,9 @@
     "deploy:prettier": "pnpm --filter @jinseokkim/prettier-config run deploy",
     "deploy:stylelint": "pnpm --filter @jinseokkim/stylelint-config run deploy",
     "deploy": "pnpm run deploy:eslint && pnpm run deploy:prettier && pnpm run deploy:stylelint",
+    "test:eslint": "pnpm --filter @convention-config/test run eslint:",
+    "test:prettier": "pnpm --filter @convention-config/test run prettier",
+    "test:stylelint": "pnpm --filter @convention-config/test run stylelint",
     "test:lint": "pnpm --filter @convention-config/test run lint:all",
     "test:react": "pnpm --filter @convention-config/test run dev"
   },
