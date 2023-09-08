@@ -11,7 +11,7 @@ env:
 
 jobs:
   test:
-    if: '!contains(github.event.head_commit.message, "ver: ")'
+    if: ${{ !contains(github.event.head_commit.message, 'ver:') }}
     runs-on: ubuntu-latest
 
     strategy:
@@ -72,15 +72,15 @@ jobs:
         run: git pull
 
       - name: Update packages patch version
-        if: 'contains(github.event.head_commit.message, "+patch")'
+        if: contains(github.event.head_commit.message, '+patch')
         run: "pnpm version patch"
 
       - name: Update packages minor version
-        if: 'contains(github.event.head_commit.message, "+minor")'
+        if: contains(github.event.head_commit.message, '+minor')
         run: "pnpm version minor"
 
       - name: Update packages major version
-        if: 'contains(github.event.head_commit.message, "+major")'
+        if: contains(github.event.head_commit.message, '+major')
         run: "pnpm version major"
 
       - name: Get current version
