@@ -73,15 +73,15 @@ jobs:
 
       - name: Update packages patch version
         if: ${{ !contains(github.event.head_commit.message, '+minor') || !contains(github.event.head_commit.message, '+major') }}
-        run: "pnpm version patch"
+        run: "pnpm version patch && pnpm run patch"
 
       - name: Update packages minor version
         if: contains(github.event.head_commit.message, '+minor')
-        run: "pnpm version minor"
+        run: "pnpm version minor && pnpm run minor"
 
       - name: Update packages major version
         if: contains(github.event.head_commit.message, '+major')
-        run: "pnpm version major"
+        run: "pnpm version major && pnpm run major"
 
       - name: Get current version
         id: get-current-version
