@@ -12,8 +12,8 @@
     "eslint:fix": "eslint './src/**/*.{js,ts,tsx}' --fix",
     "prettier": "prettier './src/**/*.{js,ts,tsx}' --check",
     "prettier:fix": "prettier './src/**/*.{js,ts,tsx}' --write",
-    "stylelint": "stylelint './src/**/*.{js,ts,tsx}'",
-    "stylelint:fix": "stylelint './src/**/*.{js,ts,tsx}' --fix",
+    "stylelint": "stylelint './src/**/*.{scss,css}'",
+    "stylelint:fix": "stylelint './src/**/*.{scss,css}' --fix",
     "lint:all": "pnpm run eslint && pnpm run prettier && pnpm run eslint",
     "lint:all:fix": "pnpm run eslint:fix && pnpm run prettier:fix && pnpm run eslint:fix"
   },
