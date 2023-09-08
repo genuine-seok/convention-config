@@ -1,6 +1,6 @@
 {
   "name": "convention-config",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "personal convention config packages",
   "packageManager": "pnpm@8.6.10",
   "scripts": {
